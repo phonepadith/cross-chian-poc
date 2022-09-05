@@ -6,10 +6,10 @@ This tutorial is modification from: https://chainbridge.chainsafe.io/live-evm-br
 
 ## Preparing 
 Before begin, we need to install all of softwares are shown below: 
-OS: Ubuntu 20.04 LTS
-Nodjs: v12.22.10
-Go: go1.16.7 linux/amd64
-gcc build-essential
+- OS: Ubuntu 20.04 LTS
+- Nodjs: v12.22.10
+- Go: go1.16.7 linux/amd64
+- gcc build-essential
 
 ## Concepts
 At a high level setting up this workshop for token transfers between two chains requires the following:
