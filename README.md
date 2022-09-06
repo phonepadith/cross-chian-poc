@@ -57,7 +57,7 @@ Once a proposal has sufficient votes a relayer can execute the proposal to trigg
 
 ## Deploying your own bridge
 ### Preparation
-1. Accounts
+***Accounts***
 If you want to follow along with this guide we will be deploying a bridge between two Ethereum test networks (Rinkeby and Ropsten).
 
 You will need one account on each network from which to deploy the contracts. These can be easily created using MetaMask. Be careful to use test accounts only as some of the commands in this tutorial require access to your private key.
@@ -75,7 +75,7 @@ You will need around 0.1 each of Rinkeby ETH and Ropsten ETH.
 
 We will be creating a bridge that wraps the test ERC20 token **COS** on Rinkeby as a wrapped version (**wCOS**) on Ropsten. So also grab some free COS tokens by sending a 0 ETH transaction to the contract address on Rinkeby: 0x6E7C2D85B4f94BBa02fa28845DF2cC27645E0087
 
-2. Create Token COS
+***Create Token COS***
 In this case we use those contracts to deploy COS token. This token can mint/burn also:
 ***IERC20.sol***
 ```
