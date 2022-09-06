@@ -66,6 +66,7 @@ This will cost gas so some test ETH will be required. So first up grab some test
 
 **Rinkeby** 
 https://rinkebyfaucet.com/
+
 **Ropsten** 
 https://faucet.metamask.io/
 
@@ -76,7 +77,7 @@ We will be creating a bridge that wraps the test ERC20 token **COS** on Rinkeby 
 
 2. Create Token COS
 In this case we use those contracts to deploy COS token. This token can mint/burn also:
-*** IERC20.sol ***
+***IERC20.sol***
 ```
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
@@ -130,7 +131,7 @@ contract ERC20 is IERC20 {
 }
 
 ```
-*** ERC20.sol ***
+***ERC20.sol***
 ```
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
