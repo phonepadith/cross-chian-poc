@@ -78,7 +78,8 @@ We will be creating a bridge that wraps the test ERC20 token **COS** on Rinkeby 
 ***Create Token COS***
 In this case we use those contracts to deploy COS token. This token can mint/burn also:
 
-***IERC20.sol***
+***ERC20.sol***
+
 ```
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
@@ -132,7 +133,9 @@ contract ERC20 is IERC20 {
 }
 
 ```
-***ERC20.sol***
+
+***IERC20.sol***
+
 ```
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
@@ -159,3 +162,5 @@ interface IERC20 {
     event Approval(address indexed owner, address indexed spender, uint value);
 }
 ```
+
+User can deploy those contracts by using [Remix](https://remix.ethereum.org/) or [Truffle](https://trufflesuite.com/) or [Hardhat](https://hardhat.org/)
