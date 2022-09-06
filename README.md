@@ -76,7 +76,7 @@ You will need around 0.1 each of Rinkeby ETH and Ropsten ETH.
 We will be creating a bridge that wraps the test ERC20 token **COS** on Rinkeby as a wrapped version (**wCOS**) on Ropsten. So also grab some free COS tokens by sending a 0 ETH transaction to the contract address on Rinkeby: ***0x6E7C2D85B4f94BBa02fa28845DF2cC27645E0087***
 
 ***Create Token COS***
-In this case we use those contracts to deploy COS token. This token can mint/burn also:
+In this case we use those contracts to deploy COS governance-token. This token can mint/burn also:
 
 ***ERC20.sol***
 
@@ -163,4 +163,30 @@ interface IERC20 {
 }
 ```
 
-User can deploy those contracts by using [Remix](https://remix.ethereum.org/) or [Truffle](https://trufflesuite.com/) or [Hardhat](https://hardhat.org/)
+User can deploy those contracts by using [Remix](https://remix.ethereum.org/) or [Truffle](https://trufflesuite.com/) or [Hardhat](https://hardhat.org/), whatever you want.
+
+### Tools
+We will be using the ChainBridge contract CLI to deploy and interact with the contracts. Grab and install the CLI by running:
+
+```
+git clone -b v1.0.0 --depth 1 https://github.com/ChainSafe/chainbridge-deploy \
+&& cd chainbridge-deploy/cb-sol-cli \
+&& npm install \
+&& make install
+```
+This will also download and build the required Solidity contracts.
+To avoid duplication in the subsequent commands set the following env vars in your shell.
+In this case, we use [Infura](https://infura.io/)
+
+```
+SRC_GATEWAY=https://rinkeby.infura.io/v3/cfc5a1f265ef42259b4f712bb72b93fc
+DST_GATEWAY=https://ropsten.infura.io/v3/cfc5a1f265ef42259b4f712bb72b93fc
+
+SRC_ADDR="<Your address on Rinkeby>"
+SRC_PK="<your private key on Rinkeby>"
+DST_ADDR="<Your address on Ropsten>"
+DST_PK="<your private key on Ropsten>"
+
+SRC_TOKEN="0x6E7C2D85B4f94BBa02fa28845DF2cC27645E0087"
+RESOURCE_ID="0x000000000000000000000000000000c76ebe4a02bbc34786d860b355f5a5ce00"
+```
