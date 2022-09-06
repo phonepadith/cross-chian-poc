@@ -58,3 +58,102 @@ Once a proposal has sufficient votes a relayer can execute the proposal to trigg
 ## Deploying your own bridge
 ### Preparation
 1. Accounts
+If you want to follow along with this guide we will be deploying a bridge between two Ethereum test networks (Rinkeby and Ropsten).
+
+You will need one account on each network from which to deploy the contracts. These can be easily created using MetaMask. Be careful to use test accounts only as some of the commands in this tutorial require access to your private key.
+
+This will cost gas so some test ETH will be required. So first up grab some test ether from the faucets:
+
+**Rinkeby** 
+https://rinkebyfaucet.com/
+**Ropsten** 
+https://faucet.metamask.io/
+
+
+You will need around 0.1 each of Rinkeby ETH and Ropsten ETH.
+
+We will be creating a bridge that wraps the test ERC20 token **COS** on Rinkeby as a wrapped version (**wCOS**) on Ropsten. So also grab some free COS tokens by sending a 0 ETH transaction to the contract address on Rinkeby: 0x6E7C2D85B4f94BBa02fa28845DF2cC27645E0087
+
+2. Create Token COS
+In this case we use those contracts to deploy COS token. This token can mint/burn also:
+*** IERC20.sol ***
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.13;
+
+import "./IERC20.sol";
+
+contract ERC20 is IERC20 {
+    uint public totalSupply;
+    mapping(address => uint) public balanceOf;
+    mapping(address => mapping(address => uint)) public allowance;
+    string public name = "CHAIN-CORSS";
+    string public symbol = "COS";
+    uint8 public decimals = 18;
+
+    function transfer(address recipient, uint amount) external returns (bool) {
+        balanceOf[msg.sender] -= amount;
+        balanceOf[recipient] += amount;
+        emit Transfer(msg.sender, recipient, amount);
+        return true;
+    }
+
+    function approve(address spender, uint amount) external returns (bool) {
+        allowance[msg.sender][spender] = amount;
+        emit Approval(msg.sender, spender, amount);
+        return true;
+    }
+
+    function transferFrom(
+        address sender,
+        address recipient,
+        uint amount
+    ) external returns (bool) {
+        allowance[sender][msg.sender] -= amount;
+        balanceOf[sender] -= amount;
+        balanceOf[recipient] += amount;
+        emit Transfer(sender, recipient, amount);
+        return true;
+    }
+
+    function mint(uint amount) external {
+        balanceOf[msg.sender] += amount;
+        totalSupply += amount;
+        emit Transfer(address(0), msg.sender, amount);
+    }
+
+    function burn(uint amount) external {
+        balanceOf[msg.sender] -= amount;
+        totalSupply -= amount;
+        emit Transfer(msg.sender, address(0), amount);
+    }
+}
+
+```
+*** ERC20.sol ***
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.13;
+
+// https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v3.0.0/contracts/token/ERC20/IERC20.sol
+interface IERC20 {
+    function totalSupply() external view returns (uint);
+
+    function balanceOf(address account) external view returns (uint);
+
+    function transfer(address recipient, uint amount) external returns (bool);
+
+    function allowance(address owner, address spender) external view returns (uint);
+
+    function approve(address spender, uint amount) external returns (bool);
+
+    function transferFrom(
+        address sender,
+        address recipient,
+        uint amount
+    ) external returns (bool);
+
+    event Transfer(address indexed from, address indexed to, uint value);
+    event Approval(address indexed owner, address indexed spender, uint value);
+}
+```
