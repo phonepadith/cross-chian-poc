@@ -64,10 +64,10 @@ You will need one account on each network from which to deploy the contracts. Th
 
 This will cost gas so some test ETH will be required. So first up grab some test ether from the faucets:
 
-**Rinkeby** 
+**Rinkeby**: 
 https://rinkebyfaucet.com/
 
-**Ropsten** 
+**Ropsten**: 
 https://faucet.metamask.io/
 
 
@@ -77,6 +77,7 @@ We will be creating a bridge that wraps the test ERC20 token **COS** on Rinkeby 
 
 ***Create Token COS***
 In this case we use those contracts to deploy COS token. This token can mint/burn also:
+
 ***IERC20.sol***
 ```
 // SPDX-License-Identifier: MIT
