@@ -73,7 +73,7 @@ https://faucet.metamask.io/
 
 You will need around 0.1 each of Rinkeby ETH and Ropsten ETH.
 
-We will be creating a bridge that wraps the test ERC20 token **COS** on Rinkeby as a wrapped version (**wCOS**) on Ropsten. So also grab some free COS tokens by sending a 0 ETH transaction to the contract address on Rinkeby: 0x6E7C2D85B4f94BBa02fa28845DF2cC27645E0087
+We will be creating a bridge that wraps the test ERC20 token **COS** on Rinkeby as a wrapped version (**wCOS**) on Ropsten. So also grab some free COS tokens by sending a 0 ETH transaction to the contract address on Rinkeby: ***0x6E7C2D85B4f94BBa02fa28845DF2cC27645E0087***
 
 ***Create Token COS***
 In this case we use those contracts to deploy COS token. This token can mint/burn also:
